@@ -1,9 +1,9 @@
-@Library('github.com/releaseworks/jenkinslib') _
+@Library('github.com/Swapnil-H-Khot/node-js-app') _
 
 pipeline {
     agent any
     environment {
-        registry = "638318277465.dkr.ecr.us-east-1.amazonaws.com/c7-assignment/node"
+        registry = "736971720766.dkr.ecr.us-east-1.amazonaws.com/final-project-repo/node"
     }
 
     stages {
@@ -26,8 +26,8 @@ pipeline {
     stage('Pushing to ECR') {
         steps{
             script {
-                sh 'docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 638318277465.dkr.ecr.us-east-1.amazonaws.com/c7-assignment/node '
-                sh 'docker push 638318277465.dkr.ecr.us-east-1.amazonaws.com/c7-assignment/node'
+                sh 'docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 736971720766.dkr.ecr.us-east-1.amazonaws.com/final-project-repo/node '
+                sh 'docker push 736971720766.dkr.ecr.us-east-1.amazonaws.com/final-project-repo/node'
             }
         }
     }
@@ -37,11 +37,11 @@ pipeline {
          script {
              sshagent(credentials : ['aws_ec2']){
 
-                sh 'ssh -o StrictHostKeyChecking=no -i assignment-c7key.pem ubuntu@10.0.2.129'
+                sh 'ssh -o StrictHostKeyChecking=no -i ~/.ssh/sk_final_project_key.pem ubuntu@10.0.1.36'
 
              }
-                //sh 'ssh -i /login/assignment-c7key.pem ubuntu@10.0.2.129'
-                sh 'docker run -d -p 8081:8080 --rm --name node 638318277465.dkr.ecr.us-east-1.amazonaws.com/c7-assignment/node'
+                //sh 'ssh -i ~/.ssh/sk_final_project_key.pem ubuntu@10.0.1.36'
+                sh 'docker run -d -p 8081:8080 --rm --name node 736971720766.dkr.ecr.us-east-1.amazonaws.com/final-project-repo/node'
             }
       }
     }
