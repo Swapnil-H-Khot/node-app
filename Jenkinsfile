@@ -1,4 +1,4 @@
-@Library('github.com/Swapnil-H-Khot/node-js-app') _
+@Library('github.com/releaseworks/jenkinslib') _
 
 pipeline {
     agent any
