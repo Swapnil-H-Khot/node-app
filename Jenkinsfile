@@ -19,6 +19,7 @@ pipeline {
         script {
           dir('/home/ubuntu/app') {
             sh 'docker build -t node-app .'
+	   }
         }
       }
     }
