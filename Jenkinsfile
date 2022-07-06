@@ -17,7 +17,8 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry
+          dir('/home/ubuntu/app') {
+            sh 'docker build -t node-app .'
         }
       }
     }
